@@ -8,24 +8,33 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var textField1: UITextField!
-    var nameText1 = ""
+    @IBAction func unwindToFirst(segue: UIStoryboardSegue) {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
+    
     @IBAction func buttonTapped1(_ sender: Any) {
-        self.nameText1 = textField1.text!
-        performSegue(withIdentifier: "firstToSecond", sender: self)
+        // Programmatic transition
+        let vc = storyboard?.instantiateViewController(withIdentifier: "firstToNext") as! SecondViewController
+        vc.finalName = textField1.text!
+        present(vc, animated: true, completion: nil)
+//
+//        self.nameText1 = textField1.text!
+//        performSegue(withIdentifier: "firstToSecond", sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! SecondViewController
-        vc.finalName = self.nameText1
-    }
+    // Segue
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "firstToSecond" {
+//            let vc = segue.destination as! SecondViewController
+//            vc.finalName = self.nameText1
+//        }
+//    }
 }
 

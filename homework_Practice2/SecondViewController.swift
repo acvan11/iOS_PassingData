@@ -9,7 +9,7 @@
 import UIKit
 
 class SecondViewController: UIViewController {
-
+    
     @IBOutlet weak var labelText2: UILabel!
     
     @IBOutlet weak var textField2: UITextField!
@@ -19,22 +19,25 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         labelText2.text = "Hello " + finalName
-        // Do any additional setup after loading the view.
+        
     }
-    
     
     @IBAction func next2Tapped(_ sender: Any) {
-         self.hometown = textField2.text!
+        self.hometown = textField2.text!
         performSegue(withIdentifier: "secondToThird", sender: self)
-       
+        
     }
     
+    // Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc2 = segue.destination as! ThirdViewController
-        vc2.finalHometown = self.hometown
-        vc2.finalName2 = self.finalName
-        
+        if segue.identifier == "secondToThird"{
+            let vc2 = segue.destination as! ThirdViewController
+            vc2.finalHometown = self.hometown
+            vc2.finalName2 = self.finalName
+        }
     }
     
 }

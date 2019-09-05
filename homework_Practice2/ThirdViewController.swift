@@ -30,10 +30,17 @@ class ThirdViewController: UIViewController {
     
 
     @IBAction func doneTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "thirdToFirst", sender: self)
+        performSegue(withIdentifier: "unwindToFirst", sender: nil)
     }
     
     @objc func swipeRight() {
-        performSegue(withIdentifier: "thirdToFirst", sender: nil)
+        performSegue(withIdentifier: "unwindToFirst", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if segue.identifier == "unwindToFirst" {
+            let firstvc = segue.destination as! FirstViewController
+            firstvc.textField1.text = ""
+        }
     }
 }
